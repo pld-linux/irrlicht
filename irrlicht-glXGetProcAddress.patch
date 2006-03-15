@@ -1,0 +1,19 @@
+# nvidia exports only the ARB one, but we're building
+# on headers from X11, which define GLX_VERSION_1_4
+--- irrlicht-0.14.0/source/Irrlicht/COpenGLDriver.cpp~	2005-11-30 20:02:54.000000000 +0100
++++ irrlicht-0.14.0/source/Irrlicht/COpenGLDriver.cpp	2006-03-15 13:20:49.692543750 +0100
+@@ -403,11 +403,11 @@
+ 			if (MultiTextureExtension)
+ 				os::Printer::log("Multittexturing active.");
+ 
+-			#ifdef GLX_VERSION_1_4
++/* 			#ifdef GLX_VERSION_1_4
+ 				#define IRR_OGL_LOAD_EXTENSION glXGetProcAddress
+-				#else
++				#else	*/
+ 				#define IRR_OGL_LOAD_EXTENSION glXGetProcAddressARB
+-			#endif
++/*			#endif	*/
+ 
+ 			pGlActiveTextureARB = (PFNGLACTIVETEXTUREARBPROC)
+ 				IRR_OGL_LOAD_EXTENSION(reinterpret_cast<const GLubyte*>("glActiveTextureARB")); 
