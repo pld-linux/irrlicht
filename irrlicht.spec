@@ -5,19 +5,19 @@
 #   and -static (since -shared is "just experimental and probably not tested")?
 #
 Summary:	Irrlicht - high performance realtime 3D engine
-#Summary(pl):	-
+Summary(pl):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
 Version:	0.14.0
 Release:	0.1
 License:	BSD-like
 Group:		Development/Libraries
-Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.zip
+Source0:	http://dl.sourceforge.net/irrlicht/%{name}-%{version}.zip
 # Source0-md5:	5da8c8f4632d26f971fba2d56e04a652
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	X11-devel
-#BuildRequires:	zlib-devel
 #BuildRequires:	libpng-devel
 #BuildRequires:	libtool
+#BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,8 +27,13 @@ is completely cross-platform, using D3D, OpenGL and its own software
 renderer, and has all of the state-of-the-art features which can be
 found in commercial 3d engines.
 
-#%description -l pl
-#
+%description -l pl
+Silnik Irrlicht to wysoko wydajny silnik 3D czasu rzeczywistego o otwartych
+¼ród³ach. Napisany i u¿ywany w jêzyku C++, dostepny tak¿e dla jêzyka .NET
+Jest w pe³ni przeno¶ny miêdzy platformami, uzywa D3D, OpenGL oraz w³asne
+oprogramowanie renderuj±ce, oraz zawiera wszystkie cechy komercyjnych
+silników 3D.
+
 #%package subpackage
 #Summary:	-
 #Summary(pl):	-
