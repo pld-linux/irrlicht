@@ -3,6 +3,8 @@
 # - get rid of internal zlib and libpng
 # - better subpackages split (leave only docs in base package, create -shared
 #   and -static (since -shared is "just experimental and probably not tested")?
+# - what do do with the .NET thingy?
+# - proper Group fields
 #
 Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
@@ -34,48 +36,29 @@ Jest w pe³ni przeno¶ny miêdzy platformami, uzywa D3D, OpenGL oraz w³asne
 oprogramowanie renderuj±ce, oraz zawiera wszystkie cechy komercyjnych
 silników 3D.
 
-#%package subpackage
-#Summary:	-
-#Summary(pl):	-
-#Group:		-
-#
-#%description subpackage
-#
-#%description subpackage -l pl
-#
-#%package libs
-#Summary:	-
-#Summary(pl):	-
-#Group:		Libraries
-#
-#%description libs
-#
-#%description libs -l pl
-
-
 %package devel
-Summary:	Header files for Irrlib library
-Summary(pl):	Pliki nag³ówkowe biblioteki Irrlib
+Summary:	Header files for Irrlicht library
+Summary(pl):	Pliki nag³ówkowe biblioteki Irrlicht
 Group:		Development/Libraries
-#Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
-This is the package containing the header files for Irrlib library.
+This is the package containing the header files for Irrlicht library.
 
 %description devel -l pl
-Ten pakiet zawiera pliki nag³ówkowe biblioteki Irrlib.
+Ten pakiet zawiera pliki nag³ówkowe biblioteki Irrlicht.
 
 %package examples
-Summary:	Examples for Irrlib library for programmers
-Summary(pl):	Przyk³ady u¿ycia biblioteki Irrlib dla programistów
+Summary:	Examples for Irrlicht library for programmers
+Summary(pl):	Przyk³ady u¿ycia biblioteki Irrlicht dla programistów
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description examples
-This is the package containing examples for Irrlib library.
+This is the package containing examples for Irrlicht library.
 
 %description examples -l pl
-Ten pakiet zawiera przyk³ady u¿ycia biblioteki Irrlib.
+Ten pakiet zawiera przyk³ady u¿ycia biblioteki Irrlicht.
 
 #%package static
 #Summary:	Static Irrlicht library
@@ -87,13 +70,11 @@ Ten pakiet zawiera przyk³ady u¿ycia biblioteki Irrlib.
 #Static Irrlicht library.
 
 #%description static -l pl
-#Statyczna biblioteka Irrlib
+#Statyczna biblioteka Irrlicht
 
 %prep
 %setup -q
-cd source
-unzip source.zip
-#%patch0 -p1
+%{__unzip} -d source source/source.zip
 
 %build
 %{__make} -C source/Irrlicht \
