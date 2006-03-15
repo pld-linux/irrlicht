@@ -10,11 +10,12 @@ Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
 Version:	0.14.0
-Release:	0.1
+Release:	0.2
 License:	BSD-like
 Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/irrlicht/%{name}-%{version}.zip
 # Source0-md5:	5da8c8f4632d26f971fba2d56e04a652
+Patch0:		%{name}-glXGetProcAddress.patch
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	X11-devel
 #BuildRequires:	libpng-devel
@@ -75,12 +76,15 @@ Ten pakiet zawiera przyk³ady u¿ycia biblioteki Irrlicht.
 %prep
 %setup -q
 %{__unzip} -d source source/source.zip
+%patch0 -p1
 
 %build
 %{__make} -C source/Irrlicht \
-	CFLAGS="%{rpmcflags}"
+	CFLAGS="%{rpmcflags}   -DGLX_GLXEXT_LEGACY" \
+	CXXFLAGS="%{rpmcflags} -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1"
 %{__make} -C source/Irrlicht sharedlib \
-	CFLAGS="%{rpmcflags}"
+	CFLAGS="%{rpmcflags}   -DGLX_GLXEXT_LEGACY" \
+	CXXFLAGS="%{rpmcflags} -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1"
 
 %install
 rm -rf $RPM_BUILD_ROOT
