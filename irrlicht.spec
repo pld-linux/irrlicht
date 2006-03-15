@@ -91,7 +91,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir},%{_examplesdir}/%{name}-%{version}}
 
 install lib/Linux/libIrrlicht.* $RPM_BUILD_ROOT%{_libdir}
-cp -r include $RPM_BUILD_ROOT%{_includedir}/irrlicht
+cp -r include  $RPM_BUILD_ROOT%{_includedir}/irrlicht
+ln -s irrlicht $RPM_BUILD_ROOT%{_includedir}/Irrlicht
 cp -r examples{,.net} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp doc/readme{,-docs}.txt
@@ -114,3 +115,4 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/irrlicht
+%{_includedir}/Irrlicht
