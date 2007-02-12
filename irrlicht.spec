@@ -7,7 +7,7 @@
 # - proper Group fields
 #
 Summary:	Irrlicht - high performance realtime 3D engine
-Summary(pl):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
+Summary(pl.UTF-8):   Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
 Version:	0.14.0
 Release:	0.2
@@ -30,36 +30,36 @@ languages. It is completely cross-platform, using D3D, OpenGL and its
 own software renderer, and has all of the state-of-the-art features
 which can be found in commercial 3D engines.
 
-%description -l pl
+%description -l pl.UTF-8
 Silnik Irrlicht to wysoko wydajny silnik 3D czasu rzeczywistego o
-otwartych ¼ród³ach. Napisany i u¿ywany w jêzyku C++, dostepny tak¿e
-dla jêzyków .NET. Jest w pe³ni przeno¶ny miêdzy platformami, u¿ywa
-D3D, OpenGL oraz w³asnego oprogramowania renderuj±cego, oraz zawiera
-wszystkie cechy komercyjnych silników 3D.
+otwartych ÅºrÃ³dÅ‚ach. Napisany i uÅ¼ywany w jÄ™zyku C++, dostepny takÅ¼e
+dla jÄ™zykÃ³w .NET. Jest w peÅ‚ni przenoÅ›ny miÄ™dzy platformami, uÅ¼ywa
+D3D, OpenGL oraz wÅ‚asnego oprogramowania renderujÄ…cego, oraz zawiera
+wszystkie cechy komercyjnych silnikÃ³w 3D.
 
 %package devel
 Summary:	Header files for Irrlicht library
-Summary(pl):	Pliki nag³ówkowe biblioteki Irrlicht
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki Irrlicht
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 This is the package containing the header files for Irrlicht library.
 
-%description devel -l pl
-Ten pakiet zawiera pliki nag³ówkowe biblioteki Irrlicht.
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki nagÅ‚Ã³wkowe biblioteki Irrlicht.
 
 %package examples
 Summary:	Examples for Irrlicht library for programmers
-Summary(pl):	Przyk³ady u¿ycia biblioteki Irrlicht dla programistów
+Summary(pl.UTF-8):   PrzykÅ‚ady uÅ¼ycia biblioteki Irrlicht dla programistÃ³w
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description examples
 This is the package containing examples for Irrlicht library.
 
-%description examples -l pl
-Ten pakiet zawiera przyk³ady u¿ycia biblioteki Irrlicht.
+%description examples -l pl.UTF-8
+Ten pakiet zawiera przykÅ‚ady uÅ¼ycia biblioteki Irrlicht.
 
 #%package static
 #Summary:	Static Irrlicht library
