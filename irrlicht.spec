@@ -7,7 +7,7 @@
 # - proper Group fields
 #
 Summary:	Irrlicht - high performance realtime 3D engine
-Summary(pl.UTF-8):   Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
+Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
 Version:	0.14.0
 Release:	0.2
@@ -39,7 +39,7 @@ wszystkie cechy komercyjnych silników 3D.
 
 %package devel
 Summary:	Header files for Irrlicht library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki Irrlicht
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Irrlicht
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -51,7 +51,7 @@ Ten pakiet zawiera pliki nagłówkowe biblioteki Irrlicht.
 
 %package examples
 Summary:	Examples for Irrlicht library for programmers
-Summary(pl.UTF-8):   Przykłady użycia biblioteki Irrlicht dla programistów
+Summary(pl.UTF-8):	Przykłady użycia biblioteki Irrlicht dla programistów
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
