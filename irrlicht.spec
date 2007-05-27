@@ -1,26 +1,27 @@
 #
 # TODO:
-# - get rid of internal zlib and libpng
-# - better subpackages split (leave only docs in base package, create -shared
-#   and -static (since -shared is "just experimental and probably not tested")?
 # - what do do with the .NET thingy?
-# - proper Group fields
 #
 Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
 Version:	0.14.0
-Release:	0.2
+Release:	0.3
 License:	BSD-like
-Group:		Development/Libraries
+Group:		Libraries
 Source0:	http://dl.sourceforge.net/irrlicht/%{name}-%{version}.zip
 # Source0-md5:	5da8c8f4632d26f971fba2d56e04a652
 Patch0:		%{name}-glXGetProcAddress.patch
+Patch1:		%{name}-gcc4.patch
+Patch2:		%{name}-system-libs.patch
 URL:		http://irrlicht.sourceforge.net/
-BuildRequires:	X11-devel
-#BuildRequires:	libpng-devel
-#BuildRequires:	libtool
-#BuildRequires:	zlib-devel
+BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	xorg-lib-libXxf86vm-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
+BuildRequires:	libstdc++-devel
+BuildRequires:	unzip
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,12 +43,25 @@ Summary:	Header files for Irrlicht library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Irrlicht
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libstdc++-devel
 
 %description devel
 This is the package containing the header files for Irrlicht library.
 
 %description devel -l pl.UTF-8
 Ten pakiet zawiera pliki nagłówkowe biblioteki Irrlicht.
+
+%package static
+Summary:	Static Irrlicht library
+Summary(pl):	Statyczna biblioteka Irrlicht
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static Irrlicht library.
+
+%description static -l pl
+Statyczna biblioteka Irrlicht
 
 %package examples
 Summary:	Examples for Irrlicht library for programmers
@@ -61,36 +75,30 @@ This is the package containing examples for Irrlicht library.
 %description examples -l pl.UTF-8
 Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 
-#%package static
-#Summary:	Static Irrlicht library
-#Summary(pl):	Statyczna biblioteka Irrlicht
-#Group:		Development/Libraries
-#Requires:	%{name}-devel = %{version}-%{release}
-#
-#%description static
-#Static Irrlicht library.
-
-#%description static -l pl
-#Statyczna biblioteka Irrlicht
-
 %prep
 %setup -q
-%{__unzip} -d source source/source.zip
+%{__unzip} -q -d source source/source.zip
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %{__make} -C source/Irrlicht \
+	CPP="%{__cxx}" \
 	CFLAGS="%{rpmcflags}   -DGLX_GLXEXT_LEGACY" \
 	CXXFLAGS="%{rpmcflags} -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1"
+%{__make} -C source/Irrlicht clean
 %{__make} -C source/Irrlicht sharedlib \
-	CFLAGS="%{rpmcflags}   -DGLX_GLXEXT_LEGACY" \
-	CXXFLAGS="%{rpmcflags} -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1"
+	CPP="%{__cxx}" \
+	CFLAGS="%{rpmcflags} -fPIC   -DGLX_GLXEXT_LEGACY" \
+	CXXFLAGS="%{rpmcflags} -fPIC -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir},%{_examplesdir}/%{name}-%{version}}
 
 install lib/Linux/libIrrlicht.* $RPM_BUILD_ROOT%{_libdir}
+ln -s libIrrlicht.so.0.12.0 $RPM_BUILD_ROOT%{_libdir}/libIrrlicht.so
 cp -r include  $RPM_BUILD_ROOT%{_includedir}/irrlicht
 ln -s irrlicht $RPM_BUILD_ROOT%{_includedir}/Irrlicht
 cp -r examples{,.net} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -106,13 +114,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc changes.txt readme.txt doc/*.chm doc/readme-docs.txt
-%{_libdir}/*
+%attr(755,root,root) %{_libdir}/libIrrlicht.so.*.*.*
+
+%files devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libIrrlicht.so
+%{_includedir}/irrlicht
+%{_includedir}/Irrlicht
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libIrrlicht.a
 
 %files examples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
-
-%files devel
-%defattr(644,root,root,755)
-%{_includedir}/irrlicht
-%{_includedir}/Irrlicht
