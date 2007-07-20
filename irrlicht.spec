@@ -5,15 +5,14 @@
 Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
-Version:	0.14.0
-Release:	0.4
+Version:	1.3.1
+Release:	0.1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/irrlicht/%{name}-%{version}.zip
-# Source0-md5:	5da8c8f4632d26f971fba2d56e04a652
+# Source0-md5:	939b21d5fa16d7d949e4ce0c23e0b4b0
 Patch0:		%{name}-glXGetProcAddress.patch
-Patch1:		%{name}-gcc4.patch
-Patch2:		%{name}-system-libs.patch
+Patch1:		%{name}-system-libs.patch
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
@@ -33,7 +32,7 @@ which can be found in commercial 3D engines.
 
 %description -l pl.UTF-8
 Silnik Irrlicht to wysoko wydajny silnik 3D czasu rzeczywistego o
-otwartych źródłach. Napisany i używany w języku C++, dostepny także
+otwartych źródłach. Napisany i używany w języku C++, dostępny także
 dla języków .NET. Jest w pełni przenośny między platformami, używa
 D3D, OpenGL oraz własnego oprogramowania renderującego, oraz zawiera
 wszystkie cechy komercyjnych silników 3D.
@@ -77,19 +76,17 @@ Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 
 %prep
 %setup -q
-%{__unzip} -q -d source source/source.zip
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__make} -C source/Irrlicht \
-	CPP="%{__cxx}" \
+	CXX="%{__cxx}" \
 	CFLAGS="%{rpmcflags}   -DGLX_GLXEXT_LEGACY" \
 	CXXFLAGS="%{rpmcflags} -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1"
 %{__make} -C source/Irrlicht clean
 %{__make} -C source/Irrlicht sharedlib \
-	CPP="%{__cxx}" \
+	CXX="%{__cxx}" \
 	CFLAGS="%{rpmcflags} -fPIC   -DGLX_GLXEXT_LEGACY" \
 	CXXFLAGS="%{rpmcflags} -fPIC -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1"
 
@@ -98,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir},%{_examplesdir}/%{name}-%{version}}
 
 install lib/Linux/libIrrlicht.* $RPM_BUILD_ROOT%{_libdir}
-ln -s libIrrlicht.so.0.12.0 $RPM_BUILD_ROOT%{_libdir}/libIrrlicht.so
+ln -s libIrrlicht.so.1.3.0 $RPM_BUILD_ROOT%{_libdir}/libIrrlicht.so
 cp -r include  $RPM_BUILD_ROOT%{_includedir}/irrlicht
 ln -s irrlicht $RPM_BUILD_ROOT%{_includedir}/Irrlicht
 cp -r examples{,.net} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
