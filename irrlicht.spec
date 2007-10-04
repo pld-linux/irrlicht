@@ -2,15 +2,16 @@
 # TODO:
 # - what do do with the .NET thingy?
 #
+%define	_beta	beta
 Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
-Version:	1.3.1
-Release:	0.1
+Version:	1.4
+Release:	0.%{_beta}.1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/irrlicht/%{name}-%{version}.zip
-# Source0-md5:	939b21d5fa16d7d949e4ce0c23e0b4b0
+Source0:	http://dl.sourceforge.net/irrlicht/%{name}-%{version}%{_beta}.zip
+# Source0-md5:	16ead941717dd56d943ae64e101fe3d1
 Patch0:		%{name}-glXGetProcAddress.patch
 Patch1:		%{name}-system-libs.patch
 URL:		http://irrlicht.sourceforge.net/
@@ -75,7 +76,7 @@ This is the package containing examples for Irrlicht library.
 Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{_beta}
 %patch0 -p1
 %patch1 -p1
 
@@ -95,10 +96,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir},%{_examplesdir}/%{name}-%{version}}
 
 install lib/Linux/libIrrlicht.* $RPM_BUILD_ROOT%{_libdir}
-ln -s libIrrlicht.so.1.3.0 $RPM_BUILD_ROOT%{_libdir}/libIrrlicht.so
+ln -s libIrrlicht.so.1.4beta $RPM_BUILD_ROOT%{_libdir}/libIrrlicht.so
 cp -r include  $RPM_BUILD_ROOT%{_includedir}/irrlicht
 ln -s irrlicht $RPM_BUILD_ROOT%{_includedir}/Irrlicht
-cp -r examples{,.net} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -r examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp doc/readme{,-docs}.txt
 
@@ -111,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc changes.txt readme.txt doc/*.chm doc/readme-docs.txt
-%attr(755,root,root) %{_libdir}/libIrrlicht.so.*.*.*
+%%attr(755,root,root) %{_libdir}/libIrrlicht.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
