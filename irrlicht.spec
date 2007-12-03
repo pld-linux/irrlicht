@@ -95,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir},%{_examplesdir}/%{name}-%{version}}
 
 install lib/Linux/libIrrlicht.* $RPM_BUILD_ROOT%{_libdir}
-ln -s libIrrlicht.so.1.4beta $RPM_BUILD_ROOT%{_libdir}/libIrrlicht.so
+ln -s $(basename lib/Linux/libIrrlicht.so.*.*) $RPM_BUILD_ROOT%{_libdir}/libIrrlicht.so
 cp -r include  $RPM_BUILD_ROOT%{_includedir}/irrlicht
 ln -s irrlicht $RPM_BUILD_ROOT%{_includedir}/Irrlicht
 cp -r examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -112,6 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc changes.txt readme.txt doc/*.chm doc/readme-docs.txt
 %attr(755,root,root) %{_libdir}/libIrrlicht.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libIrrlicht.so.1
 
 %files devel
 %defattr(644,root,root,755)
