@@ -96,6 +96,7 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_includedir},%{_examplesdir}/%{name}-%{v
 
 install lib/Linux/libIrrlicht.* $RPM_BUILD_ROOT%{_libdir}
 ln -s $(basename lib/Linux/libIrrlicht.so.*.*) $RPM_BUILD_ROOT%{_libdir}/libIrrlicht.so
+ln -s $(basename lib/Linux/libIrrlicht.so.*.*) $RPM_BUILD_ROOT%{_libdir}/libIrrlicht.so.1
 cp -r include  $RPM_BUILD_ROOT%{_includedir}/irrlicht
 ln -s irrlicht $RPM_BUILD_ROOT%{_includedir}/Irrlicht
 cp -r examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
