@@ -15,11 +15,11 @@ Patch0:		%{name}-glXGetProcAddress.patch
 Patch1:		%{name}-system-libs.patch
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
-BuildRequires:	xorg-lib-libXxf86vm-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	unzip
+BuildRequires:	xorg-lib-libXxf86vm-devel
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
