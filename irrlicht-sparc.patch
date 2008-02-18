@@ -1,0 +1,14 @@
+--- irrlicht-1.4/include/IrrCompileConfig.h.orig	2008-02-18 19:32:46.000000000 +0000
++++ irrlicht-1.4/include/IrrCompileConfig.h	2008-02-18 19:37:54.000000000 +0000
+@@ -40,7 +40,11 @@
+ #if !defined(_IRR_WINDOWS_API_) && !defined(MACOSX)
+ #if defined(__sparc__) || defined(__sun__)
+ #define __BIG_ENDIAN__
++#if defined(__linux__)
++#define _IRR_LINUX_PLATFORM_
++#else
+ #define _IRR_SOLARIS_PLATFORM_
++#endif
+ #else
+ #define _IRR_LINUX_PLATFORM_
+ #endif
