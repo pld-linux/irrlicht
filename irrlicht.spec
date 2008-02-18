@@ -13,6 +13,7 @@ Source0:	http://dl.sourceforge.net/irrlicht/%{name}-%{version}.zip
 # Source0-md5:	8270a529fa5f1f25e20337e27be3b3a5
 Patch0:		%{name}-glXGetProcAddress.patch
 Patch1:		%{name}-system-libs.patch
+Patch2:		%{name}-sparc.patch
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	libjpeg-devel
@@ -78,6 +79,7 @@ Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__make} -C source/Irrlicht \
