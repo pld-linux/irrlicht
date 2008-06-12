@@ -1,3 +1,4 @@
+# $Revision: 1.18 $, $Date: 2008-02-18 20:52:47
 #
 # TODO:
 # - what do do with the .NET thingy?
@@ -5,12 +6,12 @@
 Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
-Version:	1.4
+Version:	1.4.1
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/irrlicht/%{name}-%{version}.zip
-# Source0-md5:	8270a529fa5f1f25e20337e27be3b3a5
+# Source0-md5:	6b1870cd95f8928318ef9f01aa0de74e
 Patch0:		%{name}-glXGetProcAddress.patch
 Patch1:		%{name}-system-libs.patch
 Patch2:		%{name}-sparc.patch
