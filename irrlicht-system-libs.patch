@@ -1,6 +1,6 @@
---- irrlicht-1.4beta/include/IrrCompileConfig.h~	2007-09-29 09:30:44.000000000 +0200
-+++ irrlicht-1.4beta/include/IrrCompileConfig.h	2007-10-04 19:22:58.000000000 +0200
-@@ -117,7 +117,7 @@
+--- irrlicht-1.4.2/include/IrrCompileConfig.h~	2008-11-21 13:12:56.000000000 +0100
++++ irrlicht-1.4.2/include/IrrCompileConfig.h	2008-11-21 13:14:50.000000000 +0100
+@@ -138,7 +138,7 @@
  //! Define _IRR_USE_NON_SYSTEM_ZLIB_ to let irrlicht use the zlib which comes with irrlicht.
  /** If this is commented out, Irrlicht will try to compile using the zlib installed in the system.
  	This is only used when _IRR_COMPILE_WITH_ZLIB_ is defined. */
@@ -9,7 +9,7 @@
  
  
  //! Define _IRR_COMPILE_WITH_JPEGLIB_ to enable compiling the engine using libjpeg.
-@@ -128,7 +128,7 @@
+@@ -149,7 +149,7 @@
  //! Define _IRR_USE_NON_SYSTEM_JPEG_LIB_ to let irrlicht use the jpeglib which comes with irrlicht.
  /** If this is commented out, Irrlicht will try to compile using the jpeg lib installed in the system.
  	This is only used when _IRR_COMPILE_WITH_LIBJPEG_ is defined. */
@@ -18,7 +18,7 @@
  
  
  //! Define _IRR_COMPILE_WITH_LIBPNG_ to enable compiling the engine using libpng.
-@@ -139,7 +139,7 @@
+@@ -160,7 +160,7 @@
  //! Define _IRR_USE_NON_SYSTEM_LIBPNG_ to let irrlicht use the libpng which comes with irrlicht.
  /** If this is commented out, Irrlicht will try to compile using the libpng installed in the system.
  	This is only used when _IRR_COMPILE_WITH_LIBPNG_ is defined. */
@@ -27,8 +27,8 @@
  
  
  //! Define _IRR_D3D_NO_SHADER_DEBUGGING to disable shader debugging in D3D9
---- irrlicht-1.4beta/source/Irrlicht/Makefile~	2007-09-29 09:28:12.000000000 +0200
-+++ irrlicht-1.4beta/source/Irrlicht/Makefile	2007-10-04 19:25:55.000000000 +0200
+--- irrlicht-1.4.2/source/Irrlicht/Makefile~	2008-09-22 18:09:50.000000000 +0200
++++ irrlicht-1.4.2/source/Irrlicht/Makefile	2008-11-21 13:17:34.000000000 +0100
 @@ -36,18 +36,18 @@
  IRRIOOBJ = CFileList.o CFileSystem.o CLimitReadFile.o CMemoryReadFile.o CReadFile.o CWriteFile.o CXMLReader.o CXMLWriter.o CZipReader.o CPakReader.o irrXML.o CAttributes.o
  IRROTHEROBJ = CIrrDeviceSDL.o CIrrDeviceLinux.o CIrrDeviceStub.o CIrrDeviceWin32.o CLogger.o COSOperator.o Irrlicht.o os.o
@@ -53,12 +53,3 @@
  CPPFLAGS = $(CXXINCS) -DIRRLICHT_EXPORTS=1
  CXXFLAGS = -Wall
  ifndef NDEBUG
-@@ -68,7 +68,7 @@
- INSTALL_DIR = /usr/local/lib
- staticlib sharedlib install: SYSTEM = Linux
- staticlib sharedlib : LDFLAGS = --no-export-all-symbols --add-stdcall-alias
--sharedlib : LDFLAGS += -L/usr/X11R6/lib -lGL -lXxf86vm
-+sharedlib : LDFLAGS += -lGL -lXxf86vm -ljpeg -lpng
- staticlib sharedlib : CXXINCS += -I/usr/X11R6/include
- 
- #Windows specific options
