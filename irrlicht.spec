@@ -1,4 +1,4 @@
-# $Revision: 1.22 $, $Date: 2008-02-18 20:52:47
+# $Revision: 1.23 $, $Date: 2008-02-18 20:52:47
 #
 # TODO:
 # - what to do with the .NET thingy?
@@ -6,17 +6,16 @@
 Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
-Version:	1.5
-Release:	4
+Version:	1.5.1
+Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/irrlicht/%{name}-%{version}.zip
-# Source0-md5:	e3bc8c1074fc0ec2810dc48f94c05d5a
+# Source0-md5:	0174959bf5dc97fd645d2b714ba9bf6a
 Patch0:		%{name}-glXGetProcAddress.patch
 Patch1:		%{name}-system-libs.patch
 Patch2:		%{name}-sparc.patch
 URL:		http://irrlicht.sourceforge.net/
-BuildRequires:	dos2unix
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
@@ -79,8 +78,6 @@ Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 
 %prep
 %setup -q
-
-dos2unix include/IrrCompileConfig.h source/Irrlicht/Makefile
 
 %patch0 -p1
 %patch1 -p1
