@@ -1,6 +1,6 @@
---- irrlicht-1.5.1/include/IrrCompileConfig.h~	2009-08-05 16:22:18.000000000 +0200
-+++ irrlicht-1.5.1/include/IrrCompileConfig.h	2009-08-05 16:24:08.000000000 +0200
-@@ -66,7 +66,11 @@
+--- irrlicht-1.6/include/IrrCompileConfig.h~	2009-10-05 16:07:18.000000000 +0200
++++ irrlicht-1.6/include/IrrCompileConfig.h	2009-10-05 16:08:46.000000000 +0200
+@@ -87,7 +87,11 @@
  #if !defined(_IRR_WINDOWS_API_) && !defined(_IRR_OSX_PLATFORM_)
  #if defined(__sparc__) || defined(__sun__)
  #define __BIG_ENDIAN__
