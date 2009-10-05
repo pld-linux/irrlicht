@@ -1,4 +1,4 @@
-# $Revision: 1.25 $, $Date: 2008-02-18 20:52:47
+# $Revision: 1.26 $, $Date: 2008-02-18 20:52:47
 #
 # TODO:
 # - what to do with the .NET thingy?
@@ -81,6 +81,7 @@ Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 %setup -q
 
 dos2unix include/IrrCompileConfig.h
+dos2unix source/Irrlicht/Makefile
 
 %patch0 -p1
 %patch1 -p1
