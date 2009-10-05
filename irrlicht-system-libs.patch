@@ -28,7 +28,7 @@
  
  //! Define _IRR_D3D_NO_SHADER_DEBUGGING to disable shader debugging in D3D9
 --- irrlicht-1.6/source/Irrlicht/Makefile~	2009-09-20 09:49:40.000000000 +0200
-+++ irrlicht-1.6/source/Irrlicht/Makefile	2009-10-05 16:06:43.000000000 +0200
++++ irrlicht-1.6/source/Irrlicht/Makefile	2009-10-05 16:53:15.000000000 +0200
 @@ -39,14 +39,11 @@
  IRRIOOBJ = CFileList.o CFileSystem.o CLimitReadFile.o CMemoryFile.o CReadFile.o CWriteFile.o CXMLReader.o CXMLWriter.o CZipReader.o CPakReader.o CTarReader.o CMountPointReader.o irrXML.o CAttributes.o
  IRROTHEROBJ = CIrrDeviceSDL.o CIrrDeviceLinux.o CIrrDeviceConsole.o CIrrDeviceStub.o CIrrDeviceWin32.o CLogger.o COSOperator.o Irrlicht.o os.o

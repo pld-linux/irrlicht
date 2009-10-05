@@ -1,4 +1,4 @@
-# $Revision: 1.24 $, $Date: 2008-02-18 20:52:47
+# $Revision: 1.25 $, $Date: 2008-02-18 20:52:47
 #
 # TODO:
 # - what to do with the .NET thingy?
@@ -17,6 +17,7 @@ Patch1:		%{name}-system-libs.patch
 Patch2:		%{name}-sparc.patch
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	dos2unix
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
@@ -78,6 +79,8 @@ Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 
 %prep
 %setup -q
+
+dos2unix include/IrrCompileConfig.h
 
 %patch0 -p1
 %patch1 -p1
