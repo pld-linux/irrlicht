@@ -1,4 +1,4 @@
-# $Revision: 1.26 $, $Date: 2008-02-18 20:52:47
+# $Revision: 1.27 $, $Date: 2008-02-18 20:52:47
 #
 # TODO:
 # - what to do with the .NET thingy?
@@ -6,15 +6,14 @@
 Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
-Version:	1.6
+Version:	1.6.1
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/irrlicht/%{name}-%{version}.zip
-# Source0-md5:	e61745276a75054044f65bafed00b4ee
+# Source0-md5:	6c7fa12053c475e3305cad4e720cb711
 Patch0:		%{name}-glXGetProcAddress.patch
 Patch1:		%{name}-system-libs.patch
-Patch2:		%{name}-sparc.patch
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	dos2unix
@@ -85,7 +84,6 @@ dos2unix source/Irrlicht/Makefile
 
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__make} -C source/Irrlicht \
@@ -109,8 +107,6 @@ cp -r include  $RPM_BUILD_ROOT%{_includedir}/irrlicht
 ln -s irrlicht $RPM_BUILD_ROOT%{_includedir}/Irrlicht
 cp -r examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-cp doc/readme{,-docs}.txt
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -119,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc changes.txt readme.txt doc/*.chm doc/readme-docs.txt
+%doc changes.txt readme.txt doc
 %attr(755,root,root) %{_libdir}/libIrrlicht.so.*.*
 %attr(755,root,root) %ghost %{_libdir}/libIrrlicht.so.1
 
