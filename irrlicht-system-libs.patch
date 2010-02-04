@@ -1,24 +1,15 @@
---- irrlicht-1.6/include/IrrCompileConfig.h~	2009-09-19 17:47:04.000000000 +0200
-+++ irrlicht-1.6/include/IrrCompileConfig.h	2009-10-05 16:05:40.000000000 +0200
-@@ -179,7 +179,7 @@
- //! Define _IRR_USE_NON_SYSTEM_ZLIB_ to let irrlicht use the zlib which comes with irrlicht.
- /** If this is commented out, Irrlicht will try to compile using the zlib installed in the system.
- 	This is only used when _IRR_COMPILE_WITH_ZLIB_ is defined. */
--#define _IRR_USE_NON_SYSTEM_ZLIB_
-+//#define _IRR_USE_NON_SYSTEM_ZLIB_
- 
- 
- //! Define _IRR_COMPILE_WITH_JPEGLIB_ to enable compiling the engine using libjpeg.
-@@ -190,7 +190,7 @@
+--- irrlicht-1.7/include/IrrCompileConfig.h~	2010-02-04 09:41:09.079266016 +0100
++++ irrlicht-1.7/include/IrrCompileConfig.h	2010-02-04 09:44:15.335913904 +0100
+@@ -176,7 +176,7 @@
  //! Define _IRR_USE_NON_SYSTEM_JPEG_LIB_ to let irrlicht use the jpeglib which comes with irrlicht.
  /** If this is commented out, Irrlicht will try to compile using the jpeg lib installed in the system.
  	This is only used when _IRR_COMPILE_WITH_LIBJPEG_ is defined. */
 -#define _IRR_USE_NON_SYSTEM_JPEG_LIB_
-+//#define _IRR_USE_NON_SYSTEM_JPEG_LIB_
++//n#define _IRR_USE_NON_SYSTEM_JPEG_LIB_
  
  
  //! Define _IRR_COMPILE_WITH_LIBPNG_ to enable compiling the engine using libpng.
-@@ -201,7 +201,7 @@
+@@ -187,7 +187,7 @@
  //! Define _IRR_USE_NON_SYSTEM_LIBPNG_ to let irrlicht use the libpng which comes with irrlicht.
  /** If this is commented out, Irrlicht will try to compile using the libpng installed in the system.
  	This is only used when _IRR_COMPILE_WITH_LIBPNG_ is defined. */
@@ -27,21 +18,43 @@
  
  
  //! Define _IRR_D3D_NO_SHADER_DEBUGGING to disable shader debugging in D3D9
---- irrlicht-1.6/source/Irrlicht/Makefile~	2009-09-20 09:49:40.000000000 +0200
-+++ irrlicht-1.6/source/Irrlicht/Makefile	2009-10-05 16:53:15.000000000 +0200
-@@ -39,14 +39,11 @@
- IRRIOOBJ = CFileList.o CFileSystem.o CLimitReadFile.o CMemoryFile.o CReadFile.o CWriteFile.o CXMLReader.o CXMLWriter.o CZipReader.o CPakReader.o CTarReader.o CMountPointReader.o irrXML.o CAttributes.o
- IRROTHEROBJ = CIrrDeviceSDL.o CIrrDeviceLinux.o CIrrDeviceConsole.o CIrrDeviceStub.o CIrrDeviceWin32.o CLogger.o COSOperator.o Irrlicht.o os.o
+@@ -348,7 +348,7 @@
+ /** If this is commented out, Irrlicht will try to compile using the zlib
+ installed on the system. This is only used when _IRR_COMPILE_WITH_ZLIB_ is
+ defined. */
+-#define _IRR_USE_NON_SYSTEM_ZLIB_
++//#define _IRR_USE_NON_SYSTEM_ZLIB_
+ //! Define _IRR_COMPILE_WITH_ZIP_ENCRYPTION_ if you want to read AES-encrypted ZIP archives
+ #define _IRR_COMPILE_WITH_ZIP_ENCRYPTION_
+ //! Define _IRR_COMPILE_WITH_BZIP2_ if you want to support bzip2 compressed zip archives
+@@ -360,7 +360,7 @@
+ /** If this is commented out, Irrlicht will try to compile using the bzlib
+ installed on the system. This is only used when _IRR_COMPILE_WITH_BZLIB_ is
+ defined. */
+-#define _IRR_USE_NON_SYSTEM_BZLIB_
++//#define _IRR_USE_NON_SYSTEM_BZLIB_
+ //! Define _IRR_COMPILE_WITH_LZMA_ if you want to use LZMA compressed zip files.
+ /** LZMA is a very efficient compression code, known from 7zip. Irrlicht
+ currently only supports zip archives, though. */
+--- irrlicht-1.7/source/Irrlicht/Makefile~	2010-02-04 09:41:09.082599460 +0100
++++ irrlicht-1.7/source/Irrlicht/Makefile	2010-02-04 09:47:09.905895602 +0100
+@@ -39,18 +39,13 @@
+ IRRIOOBJ = CFileList.o CFileSystem.o CLimitReadFile.o CMemoryFile.o CReadFile.o CWriteFile.o CXMLReader.o CXMLWriter.o CZipReader.o CPakReader.o CNPKReader.o CTarReader.o CMountPointReader.o irrXML.o CAttributes.o lzma/LzmaDec.o
+ IRROTHEROBJ = CIrrDeviceSDL.o CIrrDeviceLinux.o CIrrDeviceConsole.o CIrrDeviceStub.o CIrrDeviceWin32.o CIrrDeviceFB.o CLogger.o COSOperator.o Irrlicht.o os.o
  IRRGUIOBJ = CGUIButton.o CGUICheckBox.o CGUIComboBox.o CGUIContextMenu.o CGUIEditBox.o CGUIEnvironment.o CGUIFileOpenDialog.o CGUIFont.o CGUIImage.o CGUIInOutFader.o CGUIListBox.o CGUIMenu.o CGUIMeshViewer.o CGUIMessageBox.o CGUIModalScreen.o CGUIScrollBar.o CGUISpinBox.o CGUISkin.o CGUIStaticText.o CGUITabControl.o CGUITable.o CGUIToolBar.o CGUIWindow.o CGUIColorSelectDialog.o CDefaultGUIElementFactory.o CGUISpriteBank.o CGUIImageList.o CGUITreeView.o
 -ZLIBOBJ = zlib/adler32.o zlib/compress.o zlib/crc32.o zlib/deflate.o zlib/inffast.o zlib/inflate.o zlib/inftrees.o zlib/trees.o zlib/uncompr.o zlib/zutil.o
--JPEGLIBOBJ = jpeglib/jcapimin.o jpeglib/jcapistd.o jpeglib/jccoefct.o jpeglib/jccolor.o jpeglib/jcdctmgr.o jpeglib/jchuff.o jpeglib/jcinit.o jpeglib/jcmainct.o jpeglib/jcmarker.o jpeglib/jcmaster.o jpeglib/jcomapi.o jpeglib/jcparam.o jpeglib/jcphuff.o jpeglib/jcprepct.o jpeglib/jcsample.o jpeglib/jctrans.o jpeglib/jdapimin.o jpeglib/jdapistd.o jpeglib/jdatadst.o jpeglib/jdatasrc.o jpeglib/jdcoefct.o jpeglib/jdcolor.o jpeglib/jddctmgr.o jpeglib/jdhuff.o jpeglib/jdinput.o jpeglib/jdmainct.o jpeglib/jdmarker.o jpeglib/jdmaster.o jpeglib/jdmerge.o jpeglib/jdphuff.o jpeglib/jdpostct.o jpeglib/jdsample.o jpeglib/jdtrans.o jpeglib/jerror.o jpeglib/jfdctflt.o jpeglib/jfdctfst.o jpeglib/jfdctint.o jpeglib/jidctflt.o jpeglib/jidctfst.o jpeglib/jidctint.o jpeglib/jidctred.o jpeglib/jmemmgr.o jpeglib/jmemnobs.o jpeglib/jquant1.o jpeglib/jquant2.o jpeglib/jutils.o
+-JPEGLIBOBJ = jpeglib/jcapimin.o jpeglib/jcapistd.o jpeglib/jccoefct.o jpeglib/jccolor.o jpeglib/jcdctmgr.o jpeglib/jchuff.o jpeglib/jcinit.o jpeglib/jcmainct.o jpeglib/jcmarker.o jpeglib/jcmaster.o jpeglib/jcomapi.o jpeglib/jcparam.o jpeglib/jcprepct.o jpeglib/jcsample.o jpeglib/jctrans.o jpeglib/jdapimin.o jpeglib/jdapistd.o jpeglib/jdatadst.o jpeglib/jdatasrc.o jpeglib/jdcoefct.o jpeglib/jdcolor.o jpeglib/jddctmgr.o jpeglib/jdhuff.o jpeglib/jdinput.o jpeglib/jdmainct.o jpeglib/jdmarker.o jpeglib/jdmaster.o jpeglib/jdmerge.o jpeglib/jdpostct.o jpeglib/jdsample.o jpeglib/jdtrans.o jpeglib/jerror.o jpeglib/jfdctflt.o jpeglib/jfdctfst.o jpeglib/jfdctint.o jpeglib/jidctflt.o jpeglib/jidctfst.o jpeglib/jidctint.o jpeglib/jmemmgr.o jpeglib/jmemnobs.o jpeglib/jquant1.o jpeglib/jquant2.o jpeglib/jutils.o jpeglib/jcarith.o jpeglib/jdarith.o jpeglib/jaricom.o
 -LIBPNGOBJ = libpng/png.o libpng/pngerror.o libpng/pngget.o libpng/pngmem.o libpng/pngpread.o libpng/pngread.o libpng/pngrio.o libpng/pngrtran.o libpng/pngrutil.o libpng/pngset.o libpng/pngtrans.o libpng/pngwio.o libpng/pngwrite.o libpng/pngwtran.o libpng/pngwutil.o
+ LIBAESGM = aesGladman/aescrypt.o aesGladman/aeskey.o aesGladman/aestab.o aesGladman/fileenc.o aesGladman/hmac.o aesGladman/prng.o aesGladman/pwd2key.o aesGladman/sha1.o aesGladman/sha2.o
+-BZIP2OBJ = bzip2/blocksort.o bzip2/huffman.o bzip2/crctable.o bzip2/randtable.o bzip2/bzcompress.o bzip2/decompress.o bzip2/bzlib.o
+ 
  # Next variable is for additional scene nodes etc. of customized Irrlicht versions
  EXTRAOBJ =
  LINKOBJ = $(IRRMESHOBJ) $(IRROBJ) $(IRRPARTICLEOBJ) $(IRRANIMOBJ) \
  	$(IRRVIDEOOBJ) $(IRRSWRENDEROBJ) $(IRRIOOBJ) $(IRROTHEROBJ) \
--	$(IRRGUIOBJ) $(ZLIBOBJ) $(JPEGLIBOBJ) $(LIBPNGOBJ) $(EXTRAOBJ)
-+	$(IRRGUIOBJ) $(EXTRAOBJ)
+-	$(IRRGUIOBJ) $(ZLIBOBJ) $(JPEGLIBOBJ) $(LIBPNGOBJ) $(LIBAESGM) \
+-	$(BZIP2OBJ) $(EXTRAOBJ)
++	$(IRRGUIOBJ) $(LIBAESGM) $(EXTRAOBJ)
  
  ###############
  #Compiler flags
