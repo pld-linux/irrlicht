@@ -1,7 +1,8 @@
-# $Revision: 1.29 $, $Date: 2008-02-18 20:52:47
+# $Revision: 1.30 $, $Date: 2008-02-18 20:52:47
 #
 # TODO:
 # - what to do with the .NET thingy?
+# - fix Makefile to accept rpm*flags as options
 #
 Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
@@ -15,9 +16,9 @@ Source0:	http://downloads.sourceforge.net/irrlicht/%{name}-%{version}.zip
 Patch0:		%{name}-glXGetProcAddress.patch
 Patch1:		%{name}-system-libs.patch
 URL:		http://irrlicht.sourceforge.net/
-BuildRequires:	OpenGL-GLU-devel
-BuildRequires:	dos2unix
+BuildRequires:	OpenGL-devel
 BuildRequires:	bzip2-devel
+BuildRequires:	dos2unix
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
@@ -89,13 +90,17 @@ dos2unix source/Irrlicht/Makefile
 %build
 %{__make} -C source/Irrlicht \
 	CXX="%{__cxx}" \
+	CXXINCS="-I../../include %{rpmcppflags}" \
 	CFLAGS="%{rpmcflags}   -DGLX_GLXEXT_LEGACY" \
-	CXXFLAGS="%{rpmcflags} -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1"
+	CXXFLAGS="%{rpmcflags} -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1" \
+	LDFLAGS="%{rpmldflags} -lz -lpng -ljpeg -lbz2 -lX11 -lXxf86vm -lGL"
 %{__make} -C source/Irrlicht clean
 %{__make} -C source/Irrlicht sharedlib \
 	CXX="%{__cxx}" \
+	CXXINCS="-I../../include %{rpmcppflags}" \
 	CFLAGS="%{rpmcflags} -fPIC   -DGLX_GLXEXT_LEGACY" \
-	CXXFLAGS="%{rpmcflags} -fPIC -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1"
+	CXXFLAGS="%{rpmcflags} -fPIC -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1" \
+	LDFLAGS="%{rpmldflags} -lz -lpng -ljpeg -lbz2 -lX11 -lXxf86vm -lGL"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -117,7 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc changes.txt readme.txt doc
-%attr(755,root,root) %{_libdir}/libIrrlicht.so.*.*
+%attr(755,root,root) %{_libdir}/libIrrlicht.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libIrrlicht.so.1
 
 %files devel
