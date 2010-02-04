@@ -1,4 +1,4 @@
-# $Revision: 1.28 $, $Date: 2008-02-18 20:52:47
+# $Revision: 1.29 $, $Date: 2008-02-18 20:52:47
 #
 # TODO:
 # - what to do with the .NET thingy?
@@ -17,6 +17,7 @@ Patch1:		%{name}-system-libs.patch
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	dos2unix
+BuildRequires:	bzip2-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
