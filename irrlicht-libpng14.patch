@@ -1,0 +1,14 @@
+--- irrlicht-1.7/source/Irrlicht/CImageLoaderPNG.cpp~	2010-01-31 16:03:28.000000000 +0100
++++ irrlicht-1.7/source/Irrlicht/CImageLoaderPNG.cpp	2010-02-05 15:12:19.296717517 +0100
+@@ -162,7 +162,10 @@
+ 	if (BitDepth < 8)
+ 	{
+ 		if (ColorType==PNG_COLOR_TYPE_GRAY || ColorType==PNG_COLOR_TYPE_GRAY_ALPHA)
+-			png_set_gray_1_2_4_to_8(png_ptr);
++			#if PNG_LIBPNG_VER < 10400 png_set_gray_1_2_4_to_8(png_ptr);
++			#else
++				png_set_expand_gray_1_2_4_to_8(png_ptr);
++			#endif
+ 		else
+ 			png_set_packing(png_ptr);
+ 	}
