@@ -1,4 +1,4 @@
-# $Revision: 1.32 $, $Date: 2008-02-18 20:52:47
+# $Revision: 1.33 $, $Date: 2008-02-18 20:52:47
 #
 # TODO:
 # - what to do with the .NET thingy?
@@ -7,22 +7,23 @@
 Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
-Version:	1.7.1
+Version:	1.7.2
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/irrlicht/%{name}-%{version}.zip
-# Source0-md5:	1a6d32b3014fdb91d27af64f735c5226
+# Source0-md5:	eb627d4c432bf73f12bc6d9ddc700b07
 Patch0:		%{name}-glXGetProcAddress.patch
 Patch1:		%{name}-system-libs.patch
 Patch2:		%{name}-libpng14.patch
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	OpenGL-devel
 BuildRequires:	bzip2-devel
-BuildRequires:	dos2unix
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	rpmbuild(macros) >= 1.566
+BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
 BuildRequires:	xorg-lib-libXxf86vm-devel
 BuildRequires:	zlib-devel
@@ -82,8 +83,8 @@ Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 %prep
 %setup -q
 
-dos2unix include/IrrCompileConfig.h
-dos2unix source/Irrlicht/{Makefile,CImageLoaderPNG.cpp}
+%undos include/IrrCompileConfig.h
+%undos source/Irrlicht/{Makefile,CImageLoaderPNG.cpp}
 
 %patch0 -p1
 %patch1 -p1
