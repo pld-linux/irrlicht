@@ -1,4 +1,3 @@
-# $Revision: 1.33 $, $Date: 2008-02-18 20:52:47
 #
 # TODO:
 # - what to do with the .NET thingy?
