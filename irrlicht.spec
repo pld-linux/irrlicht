@@ -57,7 +57,7 @@ Ten pakiet zawiera pliki nagłówkowe biblioteki Irrlicht.
 
 %package static
 Summary:	Static Irrlicht library
-Summary(pl):	Statyczna biblioteka Irrlicht
+Summary(pl.UTF-8):	Statyczna biblioteka Irrlicht
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
