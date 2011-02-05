@@ -64,7 +64,7 @@ Requires:	%{name}-devel = %{version}-%{release}
 %description static
 Static Irrlicht library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka Irrlicht
 
 %package examples
