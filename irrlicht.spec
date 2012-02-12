@@ -7,7 +7,7 @@ Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
 Version:	1.7.2
-Release:	5
+Release:	6
 License:	BSD-like
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/irrlicht/%{name}-%{version}.zip
@@ -15,6 +15,7 @@ Source0:	http://downloads.sourceforge.net/irrlicht/%{name}-%{version}.zip
 Patch0:		%{name}-glXGetProcAddress.patch
 Patch1:		%{name}-system-libs.patch
 Patch2:		%{name}-libpng14.patch
+Patch3:		%{name}-libpng15.patch
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	OpenGL-devel
 BuildRequires:	bzip2-devel
@@ -88,6 +89,7 @@ Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__make} -C source/Irrlicht \
