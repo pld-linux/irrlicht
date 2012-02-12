@@ -84,7 +84,7 @@ Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 %setup -q
 
 %undos include/IrrCompileConfig.h
-%undos source/Irrlicht/{Makefile,CImageLoaderPNG.cpp}
+%undos source/Irrlicht/{Makefile,CImageLoaderPNG.cpp,CImageWriterPNG.cpp}
 
 %patch0 -p1
 %patch1 -p1
