@@ -1,20 +1,11 @@
---- irrlicht-1.6/source/Irrlicht/COpenGLExtensionHandler.cpp~	2009-09-19 16:58:12.000000000 +0200
-+++ irrlicht-1.6/source/Irrlicht/COpenGLExtensionHandler.cpp	2009-10-05 16:02:17.000000000 +0200
-@@ -209,7 +209,7 @@
+--- irrlicht-1.8/source/Irrlicht/COpenGLExtensionHandler.cpp.orig	2013-07-14 08:59:10.710771070 +0200
++++ irrlicht-1.8/source/Irrlicht/COpenGLExtensionHandler.cpp	2013-07-14 09:20:05.454051748 +0200
+@@ -389,7 +389,7 @@
+ 	// next line by uncommenting it
+ 	// #define _IRR_GETPROCADDRESS_WORKAROUND_
  
- 	#ifndef _IRR_GETPROCADDRESS_WORKAROUND_
- 	__GLXextFuncPtr (*IRR_OGL_LOAD_EXTENSION)(const GLubyte*)=0;
--	#ifdef GLX_VERSION_1_4
-+/*	#ifdef GLX_VERSION_1_4
+-	#ifndef _IRR_GETPROCADDRESS_WORKAROUND_
++	#if 0
+ 	__GLXextFuncPtr (*IRR_OGL_LOAD_EXTENSION_FUNCP)(const GLubyte*)=0;
+ 	#ifdef GLX_VERSION_1_4
  		int major=0,minor=0;
- 		if (glXGetCurrentDisplay())
- 			glXQueryVersion(glXGetCurrentDisplay(), &major, &minor);
-@@ -218,7 +218,7 @@
- 		else
- 	#endif
- 			IRR_OGL_LOAD_EXTENSION=glXGetProcAddressARB;
--	#else
-+	#else*/
- 		#define IRR_OGL_LOAD_EXTENSION glXGetProcAddressARB
- 	#endif
- 	#endif
