@@ -3,26 +3,30 @@
 # - what to do with the .NET thingy?
 # - fix Makefile to accept rpm*flags as options
 #
+# Conditional build:
+%bcond_without	static_libs	# static library
+
 Summary:	Irrlicht - high performance realtime 3D engine
 Summary(pl.UTF-8):	Irrlicht - wysoko wydajny silnik 3D czasu rzeczywistego
 Name:		irrlicht
-Version:	1.8
-Release:	3
+Version:	1.8.4
+Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/irrlicht/%{name}-%{version}.zip
-# Source0-md5:	d06329d8f466658caaf4838ba349e393
+# Source0-md5:	9401cfff801395010b0912211f3cbb4f
 Source1:	http://www.opengl.org/registry/api/GL/glext.h
 Patch0:		%{name}-glXGetProcAddress.patch
 Patch1:		%{name}-system-libs.patch
 Patch2:		no-sysctl.patch
 URL:		http://irrlicht.sourceforge.net/
 BuildRequires:	OpenGL-devel
+BuildRequires:	OpenGL-GLX-devel >= 1.4
 BuildRequires:	bzip2-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.4
 BuildRequires:	libstdc++-devel
-BuildRequires:	rpmbuild(macros) >= 1.566
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
 BuildRequires:	xorg-lib-libXxf86vm-devel
@@ -68,11 +72,24 @@ Static Irrlicht library.
 %description static -l pl.UTF-8
 Statyczna biblioteka Irrlicht
 
+%package apidocs
+Summary:	API documentation for Irrlicht library
+Summary(pl.UTF-8):	Dokumentacja API biblioteki Irrlicht
+Group:		Documentation
+%{?noarchpackage}
+
+%description apidocs
+API documentation for Irrlicht library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki Irrlicht.
+
 %package examples
 Summary:	Examples for Irrlicht library for programmers
 Summary(pl.UTF-8):	Przykłady użycia biblioteki Irrlicht dla programistów
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+%{?noarchpackage}
 
 %description examples
 This is the package containing examples for Irrlicht library.
@@ -93,6 +110,7 @@ Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 cp -f %{SOURCE1} source/Irrlicht/glext.h
 
 %build
+%if %{with static_libs}
 %{__make} -C source/Irrlicht \
 	CXX="%{__cxx}" \
 	CXXINCS="-I../../include %{rpmcppflags}" \
@@ -100,6 +118,8 @@ cp -f %{SOURCE1} source/Irrlicht/glext.h
 	CXXFLAGS="%{rpmcflags} -DGLX_GLXEXT_LEGACY \$(CXXINCS) -DIRRLICHT_EXPORTS=1" \
 	LDFLAGS="%{rpmldflags} -lz -lpng -ljpeg -lbz2 -lX11 -lXxf86vm -lGL"
 %{__make} -C source/Irrlicht clean
+%endif
+
 %{__make} -C source/Irrlicht sharedlib \
 	CXX="%{__cxx}" \
 	CXXINCS="-I../../include %{rpmcppflags}" \
@@ -116,7 +136,11 @@ ln -s $(basename lib/Linux/libIrrlicht.so.*.*) $RPM_BUILD_ROOT%{_libdir}/libIrrl
 ln -s $(basename lib/Linux/libIrrlicht.so.*.*) $RPM_BUILD_ROOT%{_libdir}/libIrrlicht.so.1
 cp -r include  $RPM_BUILD_ROOT%{_includedir}/irrlicht
 ln -s irrlicht $RPM_BUILD_ROOT%{_includedir}/Irrlicht
-cp -r examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
+cp -pr examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+find $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version} \
+	-name '*.vc*' -o -name '*.sln' -o -name '*.cbp' -o -name '*.dev' -print0 | xargs -0 %{__rm}
+%{__rm} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/*.workspace
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -126,7 +150,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc changes.txt readme.txt doc
+%doc changes.txt readme.txt doc/{aesGladman,*-license,upgrade-guide}.txt
 %attr(755,root,root) %{_libdir}/libIrrlicht.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libIrrlicht.so.1
 
@@ -136,9 +160,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/irrlicht
 %{_includedir}/Irrlicht
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libIrrlicht.a
+%endif
+
+%files apidocs
+%defattr(644,root,root,755)
+# "docu" and "html" are the same
+%doc doc/html/*
 
 %files examples
 %defattr(644,root,root,755)
