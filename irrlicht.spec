@@ -76,7 +76,7 @@ Statyczna biblioteka Irrlicht
 Summary:	API documentation for Irrlicht library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki Irrlicht
 Group:		Documentation
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 API documentation for Irrlicht library.
@@ -89,7 +89,7 @@ Summary:	Examples for Irrlicht library for programmers
 Summary(pl.UTF-8):	Przykłady użycia biblioteki Irrlicht dla programistów
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description examples
 This is the package containing examples for Irrlicht library.
