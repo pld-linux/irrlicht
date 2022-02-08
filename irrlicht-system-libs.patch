@@ -36,10 +36,10 @@
  #ifdef NO_IRR_USE_NON_SYSTEM_BZLIB_
  #undef _IRR_USE_NON_SYSTEM_BZLIB_
  #endif
---- irrlicht-1.7/source/Irrlicht/Makefile~	2010-02-04 09:41:09.082599460 +0100
-+++ irrlicht-1.7/source/Irrlicht/Makefile	2010-02-04 09:47:09.905895602 +0100
-@@ -39,18 +39,13 @@
- IRRIOOBJ = CFileList.o CFileSystem.o CLimitReadFile.o CMemoryFile.o CReadFile.o CWriteFile.o CXMLReader.o CXMLWriter.o CZipReader.o CPakReader.o CNPKReader.o CTarReader.o CMountPointReader.o irrXML.o CAttributes.o lzma/LzmaDec.o
+--- irrlicht-1.8.5/source/Irrlicht/Makefile.orig	2022-02-08 17:13:44.515555324 +0100
++++ irrlicht-1.8.5/source/Irrlicht/Makefile	2022-02-08 17:14:55.105885066 +0100
+@@ -48,18 +48,14 @@ IRRSWRENDEROBJ = CSoftwareDriver.o CSoft
+ IRRIOOBJ = CFileList.o CFileSystem.o CLimitReadFile.o CMemoryFile.o CReadFile.o CWriteFile.o CXMLReader.o CXMLWriter.o CWADReader.o CZipReader.o CPakReader.o CNPKReader.o CTarReader.o CMountPointReader.o irrXML.o CAttributes.o lzma/LzmaDec.o
  IRROTHEROBJ = CIrrDeviceSDL.o CIrrDeviceLinux.o CIrrDeviceConsole.o CIrrDeviceStub.o CIrrDeviceWin32.o CIrrDeviceFB.o CLogger.o COSOperator.o Irrlicht.o os.o
  IRRGUIOBJ = CGUIButton.o CGUICheckBox.o CGUIComboBox.o CGUIContextMenu.o CGUIEditBox.o CGUIEnvironment.o CGUIFileOpenDialog.o CGUIFont.o CGUIImage.o CGUIInOutFader.o CGUIListBox.o CGUIMenu.o CGUIMeshViewer.o CGUIMessageBox.o CGUIModalScreen.o CGUIScrollBar.o CGUISpinBox.o CGUISkin.o CGUIStaticText.o CGUITabControl.o CGUITable.o CGUIToolBar.o CGUIWindow.o CGUIColorSelectDialog.o CDefaultGUIElementFactory.o CGUISpriteBank.o CGUIImageList.o CGUITreeView.o
 -ZLIBOBJ = zlib/adler32.o zlib/compress.o zlib/crc32.o zlib/deflate.o zlib/inffast.o zlib/inflate.o zlib/inftrees.o zlib/trees.o zlib/uncompr.o zlib/zutil.o
@@ -54,7 +54,8 @@
  	$(IRRVIDEOOBJ) $(IRRSWRENDEROBJ) $(IRRIOOBJ) $(IRROTHEROBJ) \
 -	$(IRRGUIOBJ) $(ZLIBOBJ) $(JPEGLIBOBJ) $(LIBPNGOBJ) $(LIBAESGM) \
 -	$(BZIP2OBJ) $(EXTRAOBJ)
-+	$(IRRGUIOBJ) $(LIBAESGM) $(EXTRAOBJ)
++	$(IRRGUIOBJ) $(LIBAESGM) \
++	$(EXTRAOBJ)
  
  ###############
  #Compiler flags
