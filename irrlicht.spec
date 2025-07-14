@@ -103,8 +103,8 @@ Ten pakiet zawiera przykłady użycia biblioteki Irrlicht.
 %undos include/IrrCompileConfig.h
 %undos source/Irrlicht/{Makefile,CImageLoaderPNG.cpp,CImageWriterPNG.cpp}
 
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 cp -f %{SOURCE1} source/Irrlicht/glext.h
 
